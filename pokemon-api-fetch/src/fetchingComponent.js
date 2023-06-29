@@ -37,16 +37,17 @@ function FetchingComponent() {
         .then((response) => response.json())
         .then(function(pokeData) {
             setPokemonData((prevData) => [...prevData, pokeData]);
-            // console.log(pokeData);
+            console.log(pokeData);
         });
     };
 
     return (
         <div>
             <h1>Fetched Data</h1>
-            {pokemonData.map((item) => (     
-                <div key={item.id}>
+            {pokemonData.map((item, index) => (     
+                <div key={index}>
                     <p>{item.name}</p>
+                    <img src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
                 </div>
             ))}
         </div>
