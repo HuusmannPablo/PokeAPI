@@ -38,8 +38,20 @@ function FetchingComponent() {
             <div className='box'>
                 {pokemonData.map((item, index) => (     
                     <div className='pokemon-card' key={index}>
-                        <h3>{item.id}) {toTitleCase(item.name)}</h3>
                         <img className='image' src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
+                        <h3>{toTitleCase(item.name)}</h3>
+                        {/* Type, I need to loop to rpint all */}
+                        {/* Weight */}
+                        <h5 className='property-title'>Weight</h5>
+                        <p className='property-data'>{item.weight}</p>
+
+                        {/* Height */}
+                        <h5 className='property-title'>Height</h5>
+                        <p className='property-data'>{item.height}</p>
+                        
+                        {/* Ability */}
+                        <h5 className='property-title'>Ability</h5>
+                        <p className='property-data'>{item.abilities[0].ability.name}</p>
                     </div>
                 ))}
             </div>
