@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toTitleCase } from './utils';
 
 function FetchingComponent() {
     
@@ -9,19 +10,9 @@ function FetchingComponent() {
         fetchKantoPokemon();
     }, []);
 
-    // const fetchPokemonData = async () => {
-    //     try {
-    //         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
-    //         const data = await response.json();
-    //         console.log(data); 
-    //     } 
-    //     catch (error) {
-    //         console.log('Error fetching data:', error);
-    //     }
-    // };
-
     function fetchKantoPokemon() {
-        fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+        fetch('https://pokeapi.co/api/v2/pokemon?limit=15')
+        // fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
         .then(response => response.json())
         .then(function(allpokemon) {
             allpokemon.results.forEach(function(pokemon){
@@ -42,15 +33,17 @@ function FetchingComponent() {
     };
 
     return (
-        <div>
+        <>
             <h1>Fetched Data</h1>
-            {pokemonData.map((item, index) => (     
-                <div key={index}>
-                    <p>{item.name}</p>
-                    <img src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
-                </div>
-            ))}
-        </div>
+            <div className='box'>
+                {pokemonData.map((item, index) => (     
+                    <div className='pokemon-card' key={index}>
+                        <h3>{item.id}) {toTitleCase(item.name)}</h3>
+                        <img className='image' src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
