@@ -2,3 +2,23 @@
   text-align: center;
 }
 
+.box {
+  border: 2px solid blue;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+}
+
+.pokemon-card {
+  border: 2px solid red;
+  border-radius: 10px;
+  height: 250px;
+  width: 200px;
+}
+
+.image {
+  border: 1px solid green;
+  width: 150px;
+}

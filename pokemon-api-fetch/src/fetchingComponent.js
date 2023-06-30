@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toTitleCase } from './utils';
 
 function FetchingComponent() {
     
@@ -42,15 +43,17 @@ function FetchingComponent() {
     };
 
     return (
-        <div>
+        <>
             <h1>Fetched Data</h1>
-            {pokemonData.map((item, index) => (     
-                <div key={index}>
-                    <p>{item.name}</p>
-                    <img src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
-                </div>
-            ))}
-        </div>
+            <div className='box'>
+                {pokemonData.map((item, index) => (     
+                    <div className='pokemon-card' key={index}>
+                        <h3>{item.id}) {toTitleCase(item.name)}</h3>
+                        <img className='image' src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 
