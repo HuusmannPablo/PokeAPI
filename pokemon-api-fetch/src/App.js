@@ -35,6 +35,7 @@ function App() {
 
   const previousPage = async () => {
     if(!prevUrl) return;
+
     setLoading(true);
     let data = await getAllPokemon(prevUrl);
     await loadingPokemon(data.results)
@@ -65,7 +66,7 @@ function App() {
           <>
             <div className='button'>
               <button onClick={previousPage}>Previous Page</button>
-              <button onCanPlay={nextPage}>Next Page</button>
+              <button onClick={nextPage}>Next Page</button>
             </div>
             <div className='grid-container'>
               {pokemonData.map((pokemon, i) => {
@@ -74,7 +75,7 @@ function App() {
             </div>
             <div className='button'>
               <button onClick={previousPage}>Previous Page</button>
-              <button onCanPlay={nextPage}>Next Page</button>
+              <button onClick={nextPage}>Next Page</button>
             </div>
           </>
         )}
