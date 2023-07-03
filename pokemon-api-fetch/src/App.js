@@ -24,6 +24,27 @@ function App() {
     fetchData();
   }, []);
 
+  const nextPage = async () => {
+    setLoading(true);
+    let data = await getAllPokemon(nextUrl);
+    await loadingPokemon(data.result)
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false);
+  };
+
+  const previousPage = async () => {
+  if(!prevUrl) return;
+    setLoading(true);
+    let data = await getAllPokemon(prevUrl);
+    await loadingPokemon(data.result)
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false);
+  };
+
+
+
   const loadingPokemon = async data => {
     let allPokemonData = await Promise.all(
       data.map(async pokemon => {
@@ -38,14 +59,28 @@ function App() {
   console.log(pokemonData)
   return (
       <div>
-        {/* <Navbar />
-        <header>Pokemon API fetching application</header>
-        <p>This is a work on progress. The goal is to show all the first 151 pokemon, on individual cards, with data like its type, weight, height, and ability.</p> */}
-        <div className='grid-container'>
-          {pokemonData.map((pokemon, i) => {
-            return <Card key={i} pokemon={pokemon} />
-          })}
-        </div>
+        <Navbar />
+        <p>This is a work on progress. The goal is to show all the first 151 pokemon, on individual cards, with data like its type, weight, height, and ability.</p>
+        <p>The app will show 20 pokemon per page, and you'll have buttons to navigate through the pages</p>
+        {loading ? (
+          <h1>Loading...</h1>
+        ) : (
+          <>
+            <div className='button'>
+              <button onClick={previousPage}>Previous Page</button>
+              <button onCanPlay={nextPage}>Next Page</button>
+            </div>
+            <div className='grid-container'>
+              {pokemonData.map((pokemon, i) => {
+                return <Card key={i} pokemon={pokemon} />
+              })}
+            </div>
+            <div className='button'>
+              <button onClick={previousPage}>Previous Page</button>
+              <button onCanPlay={nextPage}>Next Page</button>
+            </div>
+          </>
+        )}
         {/* <FetchingComponent /> */}
       </div>
   );

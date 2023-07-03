@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './style.css';
 
 function Navbar() {
   return (
-    <div>navbar</div>
+    <div className='navbar'>Pokemon API</div>
   )
 }
 
