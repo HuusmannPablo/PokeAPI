@@ -4,7 +4,14 @@ import { toTitleCase } from './utils';
 function FetchingComponent() {
     
     const [pokemonData, setPokemonData] = useState([]);
-    
+    const [nextUrl, setNextUrl] = useState('');         // Next Page
+    const [prevUrl, setPrevUrl] = useState('');         // Previous Page
+    const [loading, setLoading] = useState(true);       // For the loading when fetching
+    const initialUrl = 'https://pokeapi.co/api/v2/pokemon';
+
+
+
+
     useEffect(() => {
         // fetchPokemonData();
         fetchKantoPokemon();
@@ -41,6 +48,8 @@ function FetchingComponent() {
                         <img className='image' src={`${item.sprites.front_default}`} alt='Pokemon' ></img>
                         <h3>{toTitleCase(item.name)}</h3>
                         {/* Type, I need to loop to rpint all */}
+
+
                         {/* Weight */}
                         <h5 className='property-title'>Weight</h5>
                         <p className='property-data'>{item.weight}</p>
