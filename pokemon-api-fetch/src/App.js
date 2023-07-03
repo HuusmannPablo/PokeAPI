@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getPokemon, getAllPokemon } from './services/pokemon';
 import './App.css';
 import FetchingComponent from './fetchingComponent';
-import Navbar from './components/navbar';
+import Card from './components/Card';
+import Navbar from './components/Navbar'
 
 function App() {
 
@@ -34,16 +35,24 @@ function App() {
     setPokemonData(allPokemonData);
   };
 
-
-
-
+  console.log(pokemonData)
   return (
     <div className="App">
       <Navbar />
       <header>Pokemon API fetching application</header>
       <p>This is a work on progress. The goal is to show all the first 151 pokemon, on individual cards, with data like its type, weight, height, and ability.</p>
       <div>
-        {loading ? <h1>Loading...</h1> : <h2>Data has been fetched</h2>}
+        {
+          loading ? <h1>Loading...</h1> : (
+            <>
+              <div className='grid-container'>
+                {pokemonData.map((pokemon, i) => {
+                  return <Card key={i} pokemon={pokemon} />
+                })}
+              </div>
+            </>
+          )
+        }
       </div>
       {/* <FetchingComponent /> */}
     </div>
