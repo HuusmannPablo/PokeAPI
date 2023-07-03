@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getPokemon, getAllPokemon } from './services/pokemon';
-import './App.css';
-import FetchingComponent from './fetchingComponent';
+// import FetchingComponent from './fetchingComponent';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
+import './App.css';
 
 function App() {
 
@@ -27,25 +27,23 @@ function App() {
   const nextPage = async () => {
     setLoading(true);
     let data = await getAllPokemon(nextUrl);
-    await loadingPokemon(data.result)
+    await loadingPokemon(data.results)
     setNextUrl(data.next);
     setPrevUrl(data.previous);
     setLoading(false);
   };
 
   const previousPage = async () => {
-  if(!prevUrl) return;
+    if(!prevUrl) return;
     setLoading(true);
     let data = await getAllPokemon(prevUrl);
-    await loadingPokemon(data.result)
+    await loadingPokemon(data.results)
     setNextUrl(data.next);
     setPrevUrl(data.previous);
     setLoading(false);
   };
 
-
-
-  const loadingPokemon = async data => {
+  const loadingPokemon = async (data) => {
     let allPokemonData = await Promise.all(
       data.map(async pokemon => {
         let pokemonRecord = await getPokemon(pokemon.url);
@@ -56,7 +54,6 @@ function App() {
     setPokemonData(allPokemonData);
   };
 
-  console.log(pokemonData)
   return (
       <div>
         <Navbar />
