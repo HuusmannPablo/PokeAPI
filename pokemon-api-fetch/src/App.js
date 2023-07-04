@@ -58,8 +58,8 @@ function App() {
   return (
       <div>
         <Navbar />
-        <p>This is a work on progress. The goal is to show all the first 151 pokemon, on individual cards, with data like its type, weight, height, and ability.</p>
-        <p>The app will show 20 pokemon per page, and you'll have buttons to navigate through the pages</p>
+        {/* <p>This is a work on progress. The goal is to show all the first 151 pokemon, on individual cards, with data like its type, weight, height, and ability.</p>
+        <p>The app will show 20 pokemon per page, and you'll have buttons to navigate through the pages</p> */}
         {loading ? (
           <h1>Loading...</h1>
         ) : (
