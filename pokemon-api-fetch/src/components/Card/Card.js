@@ -1,5 +1,7 @@
-import React from 'react'
-import { toTitleCase } from '../../utils'
+import React from 'react';
+import { toTitleCase } from '../../utils';
+import typeColors from './pokemonTypes';
+import './style.css';
 
 function Card({ pokemon }) {
   return (
@@ -17,10 +19,10 @@ function Card({ pokemon }) {
 
         {/* Types */}
         <div className='card-types'>
-            {pokemon.types.map(type => {
+            {pokemon.types.map((type, i) => {
                 return (
-                    <div className='card-type'>
-                        {type.type.name}
+                    <div className='card-type' key={i} style={{ backgroundColor: typeColors[type.type.name] }}>                                    
+                        {toTitleCase(type.type.name)}
                     </div>
                 )
             })}

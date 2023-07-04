@@ -5,7 +5,7 @@ export async function getAllPokemon(url) {
             .then(data => {
                 resolve(data);
             })
-    })
+    });
 };
 
 export async function getPokemon(url) {
