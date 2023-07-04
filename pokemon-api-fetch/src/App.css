@@ -18,6 +18,7 @@
 
 .button button {
   border-style: none;
+  cursor: pointer;
   padding: 5px 10px;
   margin-right: 10px;
   border-radius: 5px;
