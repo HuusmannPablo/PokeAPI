@@ -30,18 +30,21 @@ function Card({ pokemon }) {
 
         {/* Information */}
         <div className='card-property-info'>
-            {/* Weight */}
-            <h5 className='property-title'>Weight</h5>
-            <p className='property-data'>{pokemon.weight}</p>
-
-            {/* Height */}
-            <h5 className='property-title'>Height</h5>
-            <p className='property-data'>{pokemon.height}</p>
-
-            {/* Ability */}
-            <h5 className='property-title'>Ability</h5>
-            <p className='property-data'>{pokemon.abilities[0].ability.name}</p>
-
+            <div className='property-info'>
+                {/* Weight */}  
+                <h5 className='property-title'>Weight</h5>
+                <p className='property-data'>{pokemon.weight} kg</p>
+            </div>
+            <div className='property-info'>
+                {/* Height */}
+                <h5 className='property-title'>Height</h5>
+                <p className='property-data'>{pokemon.height}0 cm</p>
+            </div>
+            <div className='property-info'>
+                {/* Ability */}
+                <h5 className='property-title'>Ability</h5>
+                <p className='property-data'>{toTitleCase(pokemon.abilities[0].ability.name)}</p>
+            </div>
         </div>
     </div>
   )
