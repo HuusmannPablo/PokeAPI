@@ -56,6 +56,7 @@ function App() {
   };
 
   const [pokemonQuery, setPokemonQuery] = useState('');
+  const [pokemonSearched, setPokemonSearched] = useState(false);
   const [pokemonQueryData, setPokemonQueryData] = useState({
     name: '',
     img: '',
@@ -81,6 +82,7 @@ function App() {
       console.log(pokemonQueryData);
     })
     setLoading(false);
+    setPokemonSearched(true);
   }
 
   console.log(pokemonData);
@@ -100,6 +102,16 @@ function App() {
                 onChange={(e) => setPokemonQuery(e.target.value)}
               />
               <button className='search-button' onClick={searchPokemonByName}>Search</button>
+            </div>
+            <div className='display-pokemon-chosen'>
+              {!pokemonSearched ? (
+                <h1>not</h1>
+                ) : (
+                <>
+                  <h1>{pokemonQueryData.name}</h1> 
+                  <Card pokemon={pokemonQueryData} />
+                </>
+              )}
             </div>
             <div className='button'>
               <button onClick={previousPage}>Previous Page</button>

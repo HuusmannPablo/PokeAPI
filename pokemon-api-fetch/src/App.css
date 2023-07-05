@@ -40,6 +40,10 @@
   cursor: pointer;
 }
 
+.display-pokemon-chosen {
+  
+}
+
 .button {
   display: flex;
   justify-content: center;
