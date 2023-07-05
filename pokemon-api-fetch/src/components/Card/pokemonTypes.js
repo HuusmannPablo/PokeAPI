@@ -4,10 +4,10 @@ const typeColors = {
     fairy: '#fdb9e9',
     fire: '#fd7d24',
     ghost: '#7b62a3',
-    ground: '#f7de3f',
+    ground: '#a38c21',
     normal: '#a4acaf',
     pyschic: '#f366b9',
-    steel: '#9eb7b',
+    steel: '#858382',
     dark: '#707070',
     electric: '#eed535',
     fighting: '#d56723',
@@ -15,7 +15,7 @@ const typeColors = {
     grass: '#9bcc50',
     ice: '#51c4e7',
     poison: '#b97fc9',
-    rock: '#a38c21',
+    rock: '#A2978d',
     water: '#4592c4',
 };
 
