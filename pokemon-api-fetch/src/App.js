@@ -103,13 +103,16 @@ function App() {
               />
               <button className='search-button' onClick={searchPokemonByName}>Search</button>
             </div>
-            <div className='display-pokemon-chosen'>
+            <div className='card-container'>
               {!pokemonSearched ? (
                 <h1>not</h1>
                 ) : (
                 <>
                   <h1>{pokemonQueryData.name}</h1> 
-                  <Card pokemon={pokemonQueryData} />
+                  <img src={pokemonQueryData.img} alt=''></img>
+                  {/* In order for the CARD to work, the query has to be structured
+                  in the same way as the API call, or the props are not going to work */}
+                  {/* <Card pokemon={pokemonQueryData.data} /> */}
                 </>
               )}
             </div>
