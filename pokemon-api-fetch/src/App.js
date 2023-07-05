@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getPokemon, getAllPokemon } from './services/pokemon';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
+import Axios from 'axios';
 import './App.css';
 
 function App() {
@@ -54,10 +55,35 @@ function App() {
     setPokemonData(allPokemonData);
   };
 
-  const [query, setQuery] = useState('');
+  const [pokemonQuery, setPokemonQuery] = useState('');
+  const [pokemonQueryData, setPokemonQueryData] = useState({
+    name: '',
+    img: '',
+    types: [],
+    weight: '',
+    height: '',
+    ability: [],
+  })
+
+  const searchPokemonByName = () => {
+    setLoading(true);
+    Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+    .then((response) => {
+      setPokemonQueryData({
+        name: response.data.name,
+        img: response.data.sprites.front_default,
+        types: response.data.types[0].type.name,
+        // types: [response.data.types[0].type.name, response.data.types[1].type.name],
+        weight: response.data.weight,
+        height: response.data.height,
+        ability: response.data.abilities[0].ability.name,
+      })
+      console.log(pokemonQueryData);
+    })
+    setLoading(false);
+  }
 
   console.log(pokemonData);
-  console.log(query);
   return (
       <div>
         <Navbar />
@@ -71,9 +97,9 @@ function App() {
                 type='text' 
                 placeholder='Type here...' 
                 className='search'
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => setPokemonQuery(e.target.value)}
               />
-              <button className='search-button'>Search</button>
+              <button className='search-button' onClick={searchPokemonByName}>Search</button>
             </div>
             <div className='button'>
               <button onClick={previousPage}>Previous Page</button>
