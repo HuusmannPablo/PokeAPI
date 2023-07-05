@@ -54,7 +54,10 @@ function App() {
     setPokemonData(allPokemonData);
   };
 
+  const [query, setQuery] = useState('');
+
   console.log(pokemonData);
+  console.log(query);
   return (
       <div>
         <Navbar />
@@ -62,6 +65,16 @@ function App() {
           <h1>Loading...</h1>
         ) : (
           <>
+            <div className='searchbar'>
+              <p>Search by name</p>
+              <input 
+                type='text' 
+                placeholder='Type here...' 
+                className='search'
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <button className='search-button'>Search</button>
+            </div>
             <div className='button'>
               <button onClick={previousPage}>Previous Page</button>
               <button onClick={nextPage}>Next Page</button>

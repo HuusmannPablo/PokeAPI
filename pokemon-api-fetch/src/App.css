@@ -10,6 +10,36 @@
   grid-gap: 10px;
 }
 
+.searchbar {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.search {
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #a3dbf2;
+  text-align: center;
+  font-size: 16px;
+}
+
+.search-button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: #006cbf;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .button {
   display: flex;
   justify-content: center;
