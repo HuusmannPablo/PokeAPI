@@ -51,7 +51,6 @@ function App() {
         return pokemonRecord;
       })
     );
-
     setPokemonData(allPokemonData);
   };
 
@@ -81,8 +80,8 @@ function App() {
   const searchPokemonByName = async () => {
     setLoading(true);
     let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    await setPokemonQueryData(data.results);
     console.log(data);
+    await setPokemonQueryData(data.results);
     console.log(pokemonQueryData)
     setLoading(false);
     setPokemonSearched(true);
@@ -102,7 +101,7 @@ function App() {
     // })
     // setLoading(false);
     // setPokemonSearched(true);
-  }
+  };
 
   console.log(pokemonData);
   return (
