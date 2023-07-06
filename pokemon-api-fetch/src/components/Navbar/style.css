@@ -10,8 +10,15 @@
 
 .title {
     color: #254246;
+
+    @media only screen and (max-width: 470px) {
+        text-align: center;
+        font-size: 22px;
+    }
 }
 
 .logo {
-    /* border: 2px solid red; */
+    @media only screen and (max-width: 800px) {
+        width: 100px;
+    }
 }
