@@ -17,3 +17,13 @@ export async function getPokemon(url) {
             })
     })
 };
+
+export async function getSearchedPokemon(url) {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                resolve(data);
+            })
+    })
+};
