@@ -79,13 +79,22 @@ function App() {
 
   const searchPokemonByName = async () => {
     setLoading(true);
-    let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    console.log(data);
-    await setPokemonQueryData(data.results);
-    console.log(pokemonQueryData)
+
+    // Asynchronous function to get response
+    // let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+    // console.log(data);
+    // await setPokemonQueryData(data.results);
+
+    // Axios method to get pokemon info
+    Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+    .then((response) => {
+      setPokemonQueryData(response.data)
+      console.log(pokemonQueryData)
+    })
     setLoading(false);
     setPokemonSearched(true);
 
+    // Project original version of fetching data
     // Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
     // .then((response) => {
     //   setPokemonQueryData({
