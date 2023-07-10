@@ -90,7 +90,7 @@ function App() {
             </div>
             <div className='card-container'>
               {!pokemonSearched ? (
-                <h1>not</h1>
+                <></>
                 ) : (
                 <>
                   <Card pokemon={pokemonQueryData} />
