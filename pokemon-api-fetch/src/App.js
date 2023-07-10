@@ -57,12 +57,14 @@ function App() {
   const [pokemonSearched, setPokemonSearched] = useState(false);
   const [pokemonQueryData, setPokemonQueryData] = useState({});
 
-  const searchPokemonByName = async () => {    
+  const searchPokemonByName = async () => {   
+    
+    // I need to add a functionality for when I get a 404 response. i.e. misspelled name
+    
     setLoading(true);
 
     // Asynchronous function to get response
     let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    console.log(data);
     await setPokemonQueryData(data);
       
     setLoading(false);
