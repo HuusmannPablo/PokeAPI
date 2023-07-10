@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
-import Axios from 'axios';
 import './App.css';
 
 function App() {
@@ -56,63 +55,22 @@ function App() {
 
   const [pokemonQuery, setPokemonQuery] = useState('');
   const [pokemonSearched, setPokemonSearched] = useState(false);
-  const [pokemonQueryData, setPokemonQueryData] = useState([]);
-  //   {
-  //   name: '',
-  //   img: '',
-  //   types: [],
-  //   weight: '',
-  //   height: '',
-  //   ability: [],
-  // })
+  const [pokemonQueryData, setPokemonQueryData] = useState({});
 
-  // const previousPage = async () => {
-  //   if(!prevUrl) return;
-
-  //   setLoading(true);
-  //   let data = await getAllPokemon(prevUrl);
-  //   await loadingPokemon(data.results)
-  //   setNextUrl(data.next);
-  //   setPrevUrl(data.previous);
-  //   setLoading(false);
-  // };
-
-  const searchPokemonByName = async () => {
+  const searchPokemonByName = async () => {   
+    
+    // I need to add a functionality for when I get a 404 response. i.e. misspelled name
+    
     setLoading(true);
 
     // Asynchronous function to get response
-    // let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    // console.log(data);
-    // await setPokemonQueryData(data.results);
-
-    // Axios method to get pokemon info
-    Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    .then((response) => {
-      setPokemonQueryData(response.data)
-      console.log(pokemonQueryData)
-    })
+    let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+    await setPokemonQueryData(data);
+      
     setLoading(false);
     setPokemonSearched(true);
-
-    // Project original version of fetching data
-    // Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    // .then((response) => {
-    //   setPokemonQueryData({
-    //     name: response.data.name,
-    //     img: response.data.sprites.front_default,
-    //     types: response.data.types[0].type.name,
-    //     // types: [response.data.types[0].type.name, response.data.types[1].type.name],
-    //     weight: response.data.weight,
-    //     height: response.data.height,
-    //     ability: response.data.abilities[0].ability.name,
-    //   })
-    //   console.log(pokemonQueryData);
-    // })
-    // setLoading(false);
-    // setPokemonSearched(true);
   };
 
-  console.log(pokemonData);
   return (
       <div>
         <Navbar />
@@ -135,10 +93,6 @@ function App() {
                 <h1>not</h1>
                 ) : (
                 <>
-                  {/* <h1>{pokemonQueryData.name}</h1> 
-                  <img src={pokemonQueryData.img} alt=''></img> */}
-                  {/* In order for the CARD to work, the query has to be structured
-                  in the same way as the API call, or the props are not going to work */}
                   <Card pokemon={pokemonQueryData} />
                 </>
               )}
