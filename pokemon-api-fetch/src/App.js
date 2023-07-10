@@ -56,7 +56,7 @@ function App() {
 
   const [pokemonQuery, setPokemonQuery] = useState('');
   const [pokemonSearched, setPokemonSearched] = useState(false);
-  const [pokemonQueryData, setPokemonQueryData] = useState([]);
+  const [pokemonQueryData, setPokemonQueryData] = useState({});
   //   {
   //   name: '',
   //   img: '',
@@ -77,7 +77,9 @@ function App() {
   //   setLoading(false);
   // };
 
-  const searchPokemonByName = async () => {
+  const searchPokemonByName = () => {
+    console.log(pokemonQuery);
+    
     setLoading(true);
 
     // Asynchronous function to get response
@@ -88,8 +90,20 @@ function App() {
     // Axios method to get pokemon info
     Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
     .then((response) => {
-      setPokemonQueryData(response.data)
-      console.log(pokemonQueryData)
+      // setPokemonQueryData(response.data)
+      setPokemonQueryData({
+        abilities: [{0: {ability: {name: response.data.abilities[0].ability.name}}}, 1],
+        height: response.data.height,
+        name: response.data.name,
+        sprites: {front_default: response.data.sprites.front_default},
+        types: [{0: {type: {name: response.data.types[0].type.name}}}, {1: {type: {name: response.data.types[1].type.name}}}],
+        weight: response.data.weight
+      })
+
+
+
+      console.log('response from the api', response.data);
+      console.log('Data stored in pokemonQueryData', pokemonQueryData)
     })
     setLoading(false);
     setPokemonSearched(true);
@@ -112,7 +126,7 @@ function App() {
     // setPokemonSearched(true);
   };
 
-  console.log(pokemonData);
+  // console.log(pokemonData);
   return (
       <div>
         <Navbar />
