@@ -9,6 +9,15 @@ p {
 
 .card-img {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
+}
+
+.image {
+    max-width: 200px;
+    max-height: 200px;
 }
 
 .card-types {
