@@ -79,6 +79,27 @@ function App() {
 
   const [selectedButton, setSelectedButton] = useState(0)
 
+  // Styled components CSS for the button container
+  //   const ButtonsContainer = styled(FlexDiv)`
+  //     display: flex;
+  //     width: 100%;
+  //     gap: 20px;
+
+  //     @media only screen and (max-width: 1400px) {
+  //         justify-content: center;
+  //     }
+
+  //     @media only screen and (max-width: 900px) {
+  //         flex-direction: column;
+  //         align-items: center;
+  //         gap: 5px;
+  //     }
+
+  //     @media only screen and (max-width: 600px) {
+  //         gap: 5px;
+  //     }
+  // `
+
   // import { Button } from '@mui/material'
 
   // const selectedButton = {
