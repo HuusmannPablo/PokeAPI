@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material'
 import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
@@ -77,78 +78,31 @@ function App() {
   // In one I will put the pokemon search, to look for one pokemon
   // In the other one, the list of all of them
 
-  const [selectedButton, setSelectedButton] = useState(0)
-
-  // Styled components CSS for the button container
-  //   const ButtonsContainer = styled(FlexDiv)`
-  //     display: flex;
-  //     width: 100%;
-  //     gap: 20px;
-
-  //     @media only screen and (max-width: 1400px) {
-  //         justify-content: center;
-  //     }
-
-  //     @media only screen and (max-width: 900px) {
-  //         flex-direction: column;
-  //         align-items: center;
-  //         gap: 5px;
-  //     }
-
-  //     @media only screen and (max-width: 600px) {
-  //         gap: 5px;
-  //     }
-  // `
-
-  // import { Button } from '@mui/material'
-
-  // const selectedButton = {
-  //     borderRadius: '30px', 
-  //     maxWidth: '200px', 
-  //     maxHeight: '45px',
-  //     padding: '0px 30px',
-  //     margin: '10px',
-  //     backgroundColor: '#FFFFFF', 
-  //     border: '2px solid #FF7A3F', 
-  //     color: '#FF7A3F',
-  //     fontFamily: 'rubik',
-  //     fontSize: '22px',
-  //     fontWeight: 'bold',
-  //     textTransform: 'capitalize'
-  // } as React.CSSProperties;
-  // const unselectedButton = {
-  //     borderRadius: '30px', 
-  //     maxWidth: '200px', 
-  //     maxHeight: '45px',
-  //     padding: '0px 30px',
-  //     margin: '10px',
-  //     backgroundColor: '#F8F8F8', 
-  //     border: '2px solid #F8F8F8', 
-  //     color: '#5B5B5B',
-  //     fontFamily: 'rubik',
-  //     fontSize: '22px',
-  //     fontWeight: 'bold',
-  //     textTransform: 'capitalize'
-  // } as React.CSSProperties;
-
-  // Button example
-  // <ButtonsContainer>
-  //     {Array.from(Array(CANDIDATE_STEPS_INFO.length).keys()).map(i => (
-  //         <Button
-  //             key={`button-${i}`}
-  //             variant='outlined'
-  //             style={selectedStep === i ? selectedButton : unselectedButton}
-  //             size='large'
-  //             onClick={() => setSelectedStep(i)}
-  //         >
-  //             {CANDIDATE_STEPS_INFO[i].label}
-  //         </Button>
-  //     ))}
-  // </ButtonsContainer>
+  const [selectedButton, setSelectedButton] = useState(0) 
 
   return (
       <div>
         <Navbar />
+        <div className='button-container'>
+          <Button
+            key={'button-1'}
+            variant='outlined'
+            style={{}}
+            size='large'
+            onClick={() => setSelectedButton(i)}
+          >
+              text 1
+          </Button>
+          <Button
+            key={'button-2'}
+            variant='outlined'
+            style={{}}
+            size='large'
+            onClick={() => setSelectedButton(i)}
+          >
+              text 2
+          </Button>
+        </div>
         {loading ? (
           <h1>Loading...</h1>
         ) : (
