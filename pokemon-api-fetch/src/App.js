@@ -63,6 +63,7 @@ function App() {
   const searchPokemonByName = async () => {   
     
     // I need to add a functionality for when I get a 404 response. i.e. misspelled name
+    // a try catch could work
     
     setLoading(true);
 
@@ -73,11 +74,6 @@ function App() {
     setPokemonSearched(true);
   };
 
-  // Conditional rendering of both functionalities
-  // I will put two buttons to chose the functionality to use.
-  // In one I will put the pokemon search, to look for one pokemon
-  // In the other one, the list of all of them
-
   const [selectedButton, setSelectedButton] = useState('') 
 
   return (
@@ -86,8 +82,10 @@ function App() {
         <div className='button-container'>
           <Button
             key={'button-1'}
-            variant='outlined'
-            style={{}}
+            variant='contained'
+            style={{
+              width: '200px',
+            }}
             size='large'
             onClick={() => setSelectedButton('searchMode')}
           >
@@ -95,8 +93,10 @@ function App() {
           </Button>
           <Button
             key={'button-2'}
-            variant='outlined'
-            style={{}}
+            variant='contained'
+            style={{
+              width: '200px',
+            }}
             size='large'
             onClick={() => setSelectedButton('listMode')}
           >
