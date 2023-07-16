@@ -78,7 +78,7 @@ function App() {
   // In one I will put the pokemon search, to look for one pokemon
   // In the other one, the list of all of them
 
-  const [selectedButton, setSelectedButton] = useState(0) 
+  const [selectedButton, setSelectedButton] = useState('') 
 
   return (
       <div>
@@ -89,56 +89,70 @@ function App() {
             variant='outlined'
             style={{}}
             size='large'
-            onClick={() => setSelectedButton(i)}
+            onClick={() => setSelectedButton('searchMode')}
           >
-              text 1
+              Pokemon Search
           </Button>
           <Button
             key={'button-2'}
             variant='outlined'
             style={{}}
             size='large'
-            onClick={() => setSelectedButton(i)}
+            onClick={() => setSelectedButton('listMode')}
           >
-              text 2
+              Catch 'em all
           </Button>
         </div>
         {loading ? (
           <h1>Loading...</h1>
         ) : (
           <>
-            <div className='searchbar'>
-              <p>Search by name</p>
-              <input 
-                type='text' 
-                placeholder='Type here...' 
-                className='search'
-                onChange={(e) => setPokemonQuery(e.target.value)}
-              />
-              <button className='search-button' onClick={searchPokemonByName}>Search</button>
-            </div>
-            <div className='card-container'>
-              {!pokemonSearched ? (
-                <></>
-                ) : (
-                <>
-                  <Card pokemon={pokemonQueryData} />
-                </>
-              )}
-            </div>
-            <div className='button'>
-              <button onClick={previousPage}>Previous Page</button>
-              <button onClick={nextPage}>Next Page</button>
-            </div>
-            <div className='grid-container'>
-              {pokemonData.map((pokemon, i) => {
-                return <Card key={i} pokemon={pokemon} />
-              })}
-            </div>
-            <div className='button'>
-              <button onClick={previousPage}>Previous Page</button>
-              <button onClick={nextPage}>Next Page</button>
-            </div>
+            {selectedButton == 'searchMode' ? (
+              <>
+                <div className='searchbar'>
+                  <p>Search by name</p>
+                  <input 
+                    type='text' 
+                    placeholder='Type here...' 
+                    className='search'
+                    onChange={(e) => setPokemonQuery(e.target.value)}
+                  />
+                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
+                </div>
+                <div className='card-container'>
+                  {!pokemonSearched ? (
+                    <></>
+                    ) : (
+                    <>
+                      <Card pokemon={pokemonQueryData} />
+                    </>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+              </>
+            )};
+            {selectedButton == 'listMode' ? (
+              <>
+                <div className='button'>
+                  <button onClick={previousPage}>Previous Page</button>
+                  <button onClick={nextPage}>Next Page</button>
+                </div>
+                <div className='grid-container'>
+                  {pokemonData.map((pokemon, i) => {
+                    return <Card key={i} pokemon={pokemon} />
+                  })}
+                </div>
+                <div className='button'>
+                  <button onClick={previousPage}>Previous Page</button>
+                  <button onClick={nextPage}>Next Page</button>
+                </div>
+              </>
+            ) : (
+              <>
+              </>
+            )}
           </>
         )}
       </div>
