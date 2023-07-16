@@ -63,6 +63,7 @@ function App() {
   const searchPokemonByName = async () => {   
     
     // I need to add a functionality for when I get a 404 response. i.e. misspelled name
+    // a try catch could work
     
     setLoading(true);
 
@@ -73,12 +74,7 @@ function App() {
     setPokemonSearched(true);
   };
 
-  // Conditional rendering of both functionalities
-  // I will put two buttons to chose the functionality to use.
-  // In one I will put the pokemon search, to look for one pokemon
-  // In the other one, the list of all of them
-
-  const [selectedButton, setSelectedButton] = useState(0) 
+  const [selectedButton, setSelectedButton] = useState('') 
 
   return (
       <div>
@@ -86,59 +82,77 @@ function App() {
         <div className='button-container'>
           <Button
             key={'button-1'}
-            variant='outlined'
-            style={{}}
+            variant='contained'
+            style={{
+              width: '200px',
+            }}
             size='large'
-            onClick={() => setSelectedButton(i)}
+            onClick={() => setSelectedButton('searchMode')}
           >
-              text 1
+              Pokemon Search
           </Button>
           <Button
             key={'button-2'}
-            variant='outlined'
-            style={{}}
+            variant='contained'
+            style={{
+              width: '200px',
+            }}
             size='large'
-            onClick={() => setSelectedButton(i)}
+            onClick={() => setSelectedButton('listMode')}
           >
-              text 2
+              Catch 'em all
           </Button>
         </div>
         {loading ? (
           <h1>Loading...</h1>
         ) : (
           <>
-            <div className='searchbar'>
-              <p>Search by name</p>
-              <input 
-                type='text' 
-                placeholder='Type here...' 
-                className='search'
-                onChange={(e) => setPokemonQuery(e.target.value)}
-              />
-              <button className='search-button' onClick={searchPokemonByName}>Search</button>
-            </div>
-            <div className='card-container'>
-              {!pokemonSearched ? (
-                <></>
-                ) : (
-                <>
-                  <Card pokemon={pokemonQueryData} />
-                </>
-              )}
-            </div>
-            <div className='button'>
-              <button onClick={previousPage}>Previous Page</button>
-              <button onClick={nextPage}>Next Page</button>
-            </div>
-            <div className='grid-container'>
-              {pokemonData.map((pokemon, i) => {
-                return <Card key={i} pokemon={pokemon} />
-              })}
-            </div>
-            <div className='button'>
-              <button onClick={previousPage}>Previous Page</button>
-              <button onClick={nextPage}>Next Page</button>
-            </div>
+            {selectedButton == 'searchMode' ? (
+              <>
+                <div className='searchbar'>
+                  <p>Search by name</p>
+                  <input 
+                    type='text' 
+                    placeholder='Type here...' 
+                    className='search'
+                    onChange={(e) => setPokemonQuery(e.target.value)}
+                  />
+                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
+                </div>
+                <div className='card-container'>
+                  {!pokemonSearched ? (
+                    <></>
+                    ) : (
+                    <>
+                      <Card pokemon={pokemonQueryData} />
+                    </>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+              </>
+            )};
+            {selectedButton == 'listMode' ? (
+              <>
+                <div className='button'>
+                  <button onClick={previousPage}>Previous Page</button>
+                  <button onClick={nextPage}>Next Page</button>
+                </div>
+                <div className='grid-container'>
+                  {pokemonData.map((pokemon, i) => {
+                    return <Card key={i} pokemon={pokemon} />
+                  })}
+                </div>
+                <div className='button'>
+                  <button onClick={previousPage}>Previous Page</button>
+                  <button onClick={nextPage}>Next Page</button>
+                </div>
+              </>
+            ) : (
+              <>
+              </>
+            )}
           </>
         )}
       </div>
