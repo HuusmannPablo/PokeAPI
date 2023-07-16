@@ -78,80 +78,7 @@ function App() {
   // In one I will put the pokemon search, to look for one pokemon
   // In the other one, the list of all of them
 
-  const [selectedButton, setSelectedButton] = useState(0)
-
-  // Styled components CSS for the button container
-  //   const ButtonsContainer = styled(FlexDiv)`
-  //     display: flex;
-  //     width: 100%;
-  //     gap: 20px;
-
-  //     @media only screen and (max-width: 1400px) {
-  //         justify-content: center;
-  //     }
-
-  //     @media only screen and (max-width: 900px) {
-  //         flex-direction: column;
-  //         align-items: center;
-  //         gap: 5px;
-  //     }
-
-  //     @media only screen and (max-width: 600px) {
-  //         gap: 5px;
-  //     }
-  // `
-
-
-  const selectedButton = {
-      borderRadius: '30px', 
-      maxWidth: '200px', 
-      maxHeight: '45px',
-      padding: '0px 30px',
-      margin: '10px',
-      backgroundColor: '#FFFFFF', 
-      border: '2px solid #FF7A3F', 
-      color: '#FF7A3F',
-      fontFamily: 'rubik',
-      fontSize: '22px',
-      fontWeight: 'bold',
-      textTransform: 'capitalize'
-  } as React.CSSProperties;
-  const unselectedButton = {
-      borderRadius: '30px', 
-      maxWidth: '200px', 
-      maxHeight: '45px',
-      padding: '0px 30px',
-      margin: '10px',
-      backgroundColor: '#F8F8F8', 
-      border: '2px solid #F8F8F8', 
-      color: '#5B5B5B',
-      fontFamily: 'rubik',
-      fontSize: '22px',
-      fontWeight: 'bold',
-      textTransform: 'capitalize'
-  } as React.CSSProperties;
-
-  // Button example
-  // <div className='button-container'>
-  //  <Button
-  //             key={'button-1'}
-  //             variant='outlined'
-  //             style={selectedButton === i ? selectedButton : unselectedButton}
-  //             size='large'
-  //             onClick={() => setSelectedButton(i)}
-  //         >
-  //             text 1
-  //         </Button>
-  //         <Button
-  //             key={'button-2'}
-  //             variant='outlined'
-  //             style={selectedButton === i ? selectedButton : unselectedButton}
-  //             size='large'
-  //             onClick={() => setSelectedButton(i)}
-  //         >
-  //             text 2
-  //         </Button>
-  // </div>
+  const [selectedButton, setSelectedButton] = useState(0) 
 
   return (
       <div>
@@ -160,7 +87,7 @@ function App() {
           <Button
             key={'button-1'}
             variant='outlined'
-            style={selectedButton === i ? selectedButton : unselectedButton}
+            style={{}}
             size='large'
             onClick={() => setSelectedButton(i)}
           >
@@ -169,7 +96,7 @@ function App() {
           <Button
             key={'button-2'}
             variant='outlined'
-            style={selectedButton === i ? selectedButton : unselectedButton}
+            style={{}}
             size='large'
             onClick={() => setSelectedButton(i)}
           >
