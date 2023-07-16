@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material'
 import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
@@ -100,55 +101,81 @@ function App() {
   //     }
   // `
 
-  // import { Button } from '@mui/material'
 
-  // const selectedButton = {
-  //     borderRadius: '30px', 
-  //     maxWidth: '200px', 
-  //     maxHeight: '45px',
-  //     padding: '0px 30px',
-  //     margin: '10px',
-  //     backgroundColor: '#FFFFFF', 
-  //     border: '2px solid #FF7A3F', 
-  //     color: '#FF7A3F',
-  //     fontFamily: 'rubik',
-  //     fontSize: '22px',
-  //     fontWeight: 'bold',
-  //     textTransform: 'capitalize'
-  // } as React.CSSProperties;
-  // const unselectedButton = {
-  //     borderRadius: '30px', 
-  //     maxWidth: '200px', 
-  //     maxHeight: '45px',
-  //     padding: '0px 30px',
-  //     margin: '10px',
-  //     backgroundColor: '#F8F8F8', 
-  //     border: '2px solid #F8F8F8', 
-  //     color: '#5B5B5B',
-  //     fontFamily: 'rubik',
-  //     fontSize: '22px',
-  //     fontWeight: 'bold',
-  //     textTransform: 'capitalize'
-  // } as React.CSSProperties;
+  const selectedButton = {
+      borderRadius: '30px', 
+      maxWidth: '200px', 
+      maxHeight: '45px',
+      padding: '0px 30px',
+      margin: '10px',
+      backgroundColor: '#FFFFFF', 
+      border: '2px solid #FF7A3F', 
+      color: '#FF7A3F',
+      fontFamily: 'rubik',
+      fontSize: '22px',
+      fontWeight: 'bold',
+      textTransform: 'capitalize'
+  } as React.CSSProperties;
+  const unselectedButton = {
+      borderRadius: '30px', 
+      maxWidth: '200px', 
+      maxHeight: '45px',
+      padding: '0px 30px',
+      margin: '10px',
+      backgroundColor: '#F8F8F8', 
+      border: '2px solid #F8F8F8', 
+      color: '#5B5B5B',
+      fontFamily: 'rubik',
+      fontSize: '22px',
+      fontWeight: 'bold',
+      textTransform: 'capitalize'
+  } as React.CSSProperties;
 
   // Button example
-  // <ButtonsContainer>
-  //     {Array.from(Array(CANDIDATE_STEPS_INFO.length).keys()).map(i => (
-  //         <Button
-  //             key={`button-${i}`}
+  // <div className='button-container'>
+  //  <Button
+  //             key={'button-1'}
   //             variant='outlined'
-  //             style={selectedStep === i ? selectedButton : unselectedButton}
+  //             style={selectedButton === i ? selectedButton : unselectedButton}
   //             size='large'
-  //             onClick={() => setSelectedStep(i)}
+  //             onClick={() => setSelectedButton(i)}
   //         >
-  //             {CANDIDATE_STEPS_INFO[i].label}
+  //             text 1
   //         </Button>
-  //     ))}
-  // </ButtonsContainer>
+  //         <Button
+  //             key={'button-2'}
+  //             variant='outlined'
+  //             style={selectedButton === i ? selectedButton : unselectedButton}
+  //             size='large'
+  //             onClick={() => setSelectedButton(i)}
+  //         >
+  //             text 2
+  //         </Button>
+  // </div>
 
   return (
       <div>
         <Navbar />
+        <div className='button-container'>
+          <Button
+            key={'button-1'}
+            variant='outlined'
+            style={selectedButton === i ? selectedButton : unselectedButton}
+            size='large'
+            onClick={() => setSelectedButton(i)}
+          >
+              text 1
+          </Button>
+          <Button
+            key={'button-2'}
+            variant='outlined'
+            style={selectedButton === i ? selectedButton : unselectedButton}
+            size='large'
+            onClick={() => setSelectedButton(i)}
+          >
+              text 2
+          </Button>
+        </div>
         {loading ? (
           <h1>Loading...</h1>
         ) : (
