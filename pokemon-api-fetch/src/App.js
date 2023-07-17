@@ -107,7 +107,7 @@ function App() {
           <h1>Loading...</h1>
         ) : (
           <>
-            {selectedButton == 'searchMode' ? (
+            {selectedButton === 'searchMode' ? (
               <>
                 <div className='searchbar'>
                   <p>Search by name</p>
@@ -133,7 +133,7 @@ function App() {
               <>
               </>
             )};
-            {selectedButton == 'listMode' ? (
+            {selectedButton === 'listMode' ? (
               <>
                 <div className='button'>
                   <button onClick={previousPage}>Previous Page</button>
