@@ -6,11 +6,20 @@ I'll be working with the Pokemon API, which gives you information about every Po
 API List: https://pokeapi.co/api/v2/pokemon
 
 You can search for a specific Pokemon by name, or display them all on pages of 20 at a time.
-Those buttons to select the function you want are made with Materials UI.
+The buttons to select the function you want were made with Materials UI.
+
+HOW TO RUN IT:
+The site isn't deployed, so you'll need to clone the code, and run it through the console. 
+Run the command:
+
+  ### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 Future features:
   Search bar to handle misspelling mistakes and 404.
-  Page to be hosted for everyone to use.
+  Page to be deployed for everyone to use.
   Filter by type from a dropdown list.
 
 If you have any suggestions please get in touch!
