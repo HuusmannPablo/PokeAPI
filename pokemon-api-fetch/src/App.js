@@ -111,6 +111,9 @@ function App() {
               <>
                 <div className='searchbar'>
                   <p>Search by name</p>
+
+                  <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
+                  <div class="gcse-search"></div>
                   <input 
                     type='text' 
                     placeholder='Type here...' 
