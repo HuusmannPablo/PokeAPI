@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/huusmannpablo.github.io/PokeAPI/precache-manifest.0fac9da18f8aee1cbbdb3d6450177aeb.js"
+  "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/precache-manifest.c89d26ab91495bee931508135f5b8900.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/huusmannpablo.github.io/PokeAPI/index.html", {
+workbox.routing.registerNavigationRoute("/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
