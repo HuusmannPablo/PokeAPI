@@ -78,6 +78,16 @@ function App() {
 
   const [selectedButton, setSelectedButton] = useState('') 
 
+  // Autocomplete function
+  const [searchValue, setSearchValue] = useState('')
+  const onChange = (event) => {
+    setSearchValue(event.target.value);
+  }
+  const onSearch = (searchTerm) => {
+    setSearchValue(searchTerm);
+    console.log('Search', searchTerm);
+  };
+
   return (
       <div>
         <Navbar />
@@ -122,12 +132,34 @@ function App() {
                     type='text' 
                     placeholder='Type here...' 
                     className='search'
+                    // value={searchValue}
                     onChange={(e) => setPokemonQuery(e.target.value)}
                   />
+                  <input 
+                    type='text' 
+                    className='trial-search' 
+                    value={searchValue} 
+                    onChange={onChange}>
+                  </input>
+                  <button onClick={() => onSearch(searchValue)}> Search </button>
                 </div>
                 <div className='dropdown'>
-                  {searchNameData.map((item) => (
-                    <div className='dropdown-row'>{item.name}</div>
+                  {searchNameData
+                    .filter(item => {
+                      const searchTerm = searchValue.toLowerCase();
+                      const name = item.name.toLowerCase();
+
+                      return searchTerm && name.includes(searchTerm) && name !== searchTerm;
+                    })
+                    .slice(0, 10)
+                    .map((item) => (
+                      <div 
+                        className='dropdown-row' 
+                        onClick={() => onSearch(item.name)}
+                        key={item.name}
+                      >
+                        {item.name}
+                      </div>
                   ))}
                 </div>
                 <div className='card-container'>

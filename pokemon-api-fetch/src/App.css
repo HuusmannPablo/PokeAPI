@@ -56,6 +56,10 @@
   cursor: pointer;
 }
 
+.dropdown {
+  
+}
+
 .card-container {
   width: 70%;
   display: grid;
