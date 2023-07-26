@@ -57,7 +57,22 @@
 }
 
 .dropdown {
-  
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 10px;
+  width: 200px;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: center;
+  margin: 2px 0px;
 }
 
 .card-container {
