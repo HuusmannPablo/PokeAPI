@@ -82,9 +82,11 @@ function App() {
   const [searchValue, setSearchValue] = useState('')
   const onChange = (event) => {
     setSearchValue(event.target.value);
+    setPokemonQuery(event.target.value);
   }
   const onSearch = (searchTerm) => {
     setSearchValue(searchTerm);
+    setPokemonQuery(searchTerm);
     console.log('Search', searchTerm);
   };
 
@@ -132,35 +134,35 @@ function App() {
                     type='text' 
                     placeholder='Type here...' 
                     className='search'
-                    // value={searchValue}
-                    onChange={(e) => setPokemonQuery(e.target.value)}
+                    value={searchValue}
+                    onChange={onChange}
                   />
-                  <input 
+                  {/* <input 
                     type='text' 
                     className='trial-search' 
                     value={searchValue} 
                     onChange={onChange}>
                   </input>
-                  <button onClick={() => onSearch(searchValue)}> Search </button>
-                </div>
-                <div className='dropdown'>
-                  {searchNameData
-                    .filter(item => {
-                      const searchTerm = searchValue.toLowerCase();
-                      const name = item.name.toLowerCase();
+                  <button onClick={() => onSearch(searchValue)}> Search </button> */}
+                  <div className='dropdown'>
+                    {searchNameData
+                      .filter(item => {
+                        const searchTerm = searchValue.toLowerCase();
+                        const name = item.name.toLowerCase();
 
-                      return searchTerm && name.includes(searchTerm) && name !== searchTerm;
-                    })
-                    .slice(0, 10)
-                    .map((item) => (
-                      <div 
-                        className='dropdown-row' 
-                        onClick={() => onSearch(item.name)}
-                        key={item.name}
-                      >
-                        {item.name}
-                      </div>
-                  ))}
+                        return searchTerm && name.includes(searchTerm) && name !== searchTerm;
+                      })
+                      .slice(0, 10)
+                      .map((item) => (
+                        <div 
+                          className='dropdown-row' 
+                          onClick={() => onSearch(item.name)}
+                          key={item.name}
+                        >
+                          {item.name}
+                        </div>
+                    ))}
+                  </div>
                 </div>
                 <div className='card-container'>
                   {!pokemonSearched ? (
