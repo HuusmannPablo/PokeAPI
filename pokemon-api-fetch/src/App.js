@@ -5,6 +5,8 @@ import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
 import './App.css';
 
+var searchNameData = require("./pokemonData.json");
+
 function App() {
 
   // Functionality for showing all the Pokemon, 20 per page
@@ -112,15 +114,21 @@ function App() {
                 <div className='searchbar'>
                   <p>Search by name</p>
 
-                  <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
-                  <div class="gcse-search"></div>
+                  {/* <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
+                  <div class="gcse-search"></div> */}
+
+                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
                   <input 
                     type='text' 
                     placeholder='Type here...' 
                     className='search'
                     onChange={(e) => setPokemonQuery(e.target.value)}
                   />
-                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
+                </div>
+                <div className='dropdown'>
+                  {searchNameData.map((item) => (
+                    <div className='dropdown-row'>{item.name}</div>
+                  ))}
                 </div>
                 <div className='card-container'>
                   {!pokemonSearched ? (
