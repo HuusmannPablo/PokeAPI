@@ -1,15 +1,15 @@
 {
-  "main.css": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/css/main.c2d05840.chunk.css",
-  "main.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/main.9f57b856.chunk.js",
-  "main.js.map": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/main.9f57b856.chunk.js.map",
-  "static/js/1.6f6f4986.chunk.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/1.6f6f4986.chunk.js",
-  "static/js/1.6f6f4986.chunk.js.map": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/1.6f6f4986.chunk.js.map",
-  "static/js/2.e9342b25.chunk.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/2.e9342b25.chunk.js",
-  "static/js/2.e9342b25.chunk.js.map": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/2.e9342b25.chunk.js.map",
-  "runtime~main.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/runtime~main.708e6fce.js",
-  "runtime~main.js.map": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/js/runtime~main.708e6fce.js.map",
-  "static/css/main.c2d05840.chunk.css.map": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/static/css/main.c2d05840.chunk.css.map",
-  "index.html": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/index.html",
-  "precache-manifest.2f2a40c646c015e804ec559adc21504b.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/precache-manifest.2f2a40c646c015e804ec559adc21504b.js",
-  "service-worker.js": "/huusmannpablo.github.io/PokeAPI/pokemon-api-fetch/build/service-worker.js"
+  "main.css": "/static/css/main.c2d05840.chunk.css",
+  "main.js": "/static/js/main.9f57b856.chunk.js",
+  "main.js.map": "/static/js/main.9f57b856.chunk.js.map",
+  "static/js/1.6f6f4986.chunk.js": "/static/js/1.6f6f4986.chunk.js",
+  "static/js/1.6f6f4986.chunk.js.map": "/static/js/1.6f6f4986.chunk.js.map",
+  "static/js/2.7ea51432.chunk.js": "/static/js/2.7ea51432.chunk.js",
+  "static/js/2.7ea51432.chunk.js.map": "/static/js/2.7ea51432.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.15039e49.js",
+  "runtime~main.js.map": "/static/js/runtime~main.15039e49.js.map",
+  "static/css/main.c2d05840.chunk.css.map": "/static/css/main.c2d05840.chunk.css.map",
+  "index.html": "/index.html",
+  "precache-manifest.7446fd3ebd38318001847ef576f6de19.js": "/precache-manifest.7446fd3ebd38318001847ef576f6de19.js",
+  "service-worker.js": "/service-worker.js"
 }
