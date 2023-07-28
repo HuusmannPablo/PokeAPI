@@ -5,6 +5,8 @@ import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
 import './App.css';
 
+var searchNameData = require("./pokemonData.json");
+
 function App() {
 
   // Functionality for showing all the Pokemon, 20 per page
@@ -76,6 +78,18 @@ function App() {
 
   const [selectedButton, setSelectedButton] = useState('') 
 
+  // Autocomplete function
+  const [searchValue, setSearchValue] = useState('')
+  const onChange = (event) => {
+    setSearchValue(event.target.value);
+    setPokemonQuery(event.target.value);
+  }
+  const onSearch = (searchTerm) => {
+    setSearchValue(searchTerm);
+    setPokemonQuery(searchTerm);
+    console.log('Search', searchTerm);
+  };
+
   return (
       <div>
         <Navbar />
@@ -111,13 +125,44 @@ function App() {
               <>
                 <div className='searchbar'>
                   <p>Search by name</p>
+
+                  {/* <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
+                  <div class="gcse-search"></div> */}
+
+                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
                   <input 
                     type='text' 
                     placeholder='Type here...' 
                     className='search'
-                    onChange={(e) => setPokemonQuery(e.target.value)}
+                    value={searchValue}
+                    onChange={onChange}
                   />
-                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
+                  {/* <input 
+                    type='text' 
+                    className='trial-search' 
+                    value={searchValue} 
+                    onChange={onChange}>
+                  </input>
+                  <button onClick={() => onSearch(searchValue)}> Search </button> */}
+                  <div className='dropdown'>
+                    {searchNameData
+                      .filter(item => {
+                        const searchTerm = searchValue.toLowerCase();
+                        const name = item.name.toLowerCase();
+
+                        return searchTerm && name.includes(searchTerm) && name !== searchTerm;
+                      })
+                      .slice(0, 10)
+                      .map((item) => (
+                        <div 
+                          className='dropdown-row' 
+                          onClick={() => onSearch(item.name)}
+                          key={item.name}
+                        >
+                          {item.name}
+                        </div>
+                    ))}
+                  </div>
                 </div>
                 <div className='card-container'>
                   {!pokemonSearched ? (
