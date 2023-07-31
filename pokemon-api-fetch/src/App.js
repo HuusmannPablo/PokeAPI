@@ -64,14 +64,13 @@ function App() {
 
   const searchPokemonByName = async () => {   
     
-    // I need to add a functionality for when I get a 404 response. i.e. misspelled name
-    // a try catch could work
-    
     setLoading(true);
 
-    let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    await setPokemonQueryData(data);
-      
+      let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+      await setPokemonQueryData(data);
+      console.log('Searched done')
+      console.log(data)
+
     setLoading(false);
     setPokemonSearched(true);
   };
@@ -125,10 +124,6 @@ function App() {
               <>
                 <div className='searchbar'>
                   <p>Search by name</p>
-
-                  {/* <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
-                  <div class="gcse-search"></div> */}
-
                   <button className='search-button' onClick={searchPokemonByName}>Search</button>
                   <input 
                     type='text' 
@@ -137,13 +132,6 @@ function App() {
                     value={searchValue}
                     onChange={onChange}
                   />
-                  {/* <input 
-                    type='text' 
-                    className='trial-search' 
-                    value={searchValue} 
-                    onChange={onChange}>
-                  </input>
-                  <button onClick={() => onSearch(searchValue)}> Search </button> */}
                   <div className='dropdown'>
                     {searchNameData
                       .filter(item => {
