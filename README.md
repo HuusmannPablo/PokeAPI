@@ -9,7 +9,10 @@ You can search for a specific Pokemon by name, or display them all on pages of 2
 The buttons to select the function you want were made with Materials UI.
 
 HOW TO RUN IT:
-The site isn't deployed, so you'll need to clone the code, and run it through the console. 
+The site is deployed at:
+https://pokemon-api-fetch.web.app/
+
+If you want to run it locally, clone the code, and run it through the console. 
 Run the command:
 
   ### `npm start`
@@ -19,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 Future features:
   Search bar to handle misspelling mistakes and 404.
-  Page to be deployed for everyone to use.
   Filter by type from a dropdown list.
 
 If you have any suggestions please get in touch!
+
