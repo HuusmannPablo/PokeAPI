@@ -63,15 +63,11 @@ function App() {
   const [pokemonQueryData, setPokemonQueryData] = useState({});
 
   const searchPokemonByName = async () => {   
-    
-    setLoading(true);
-
+      console.log('Search started')
       let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
       await setPokemonQueryData(data);
-      console.log('Searched done')
+      console.log('Search done')
       console.log(data)
-
-    setLoading(false);
     setPokemonSearched(true);
   };
 
@@ -82,7 +78,7 @@ function App() {
   const onChange = (event) => {
     setSearchValue(event.target.value);
     setPokemonQuery(event.target.value);
-  }
+  };
   const onSearch = (searchTerm) => {
     setSearchValue(searchTerm);
     setPokemonQuery(searchTerm);
@@ -138,7 +134,7 @@ function App() {
                         const searchTerm = searchValue.toLowerCase();
                         const name = item.name.toLowerCase();
 
-                        return searchTerm && name.includes(searchTerm) && name !== searchTerm;
+                        return searchTerm && name.includes(searchTerm) && name !== searchTerm
                       })
                       .slice(0, 10)
                       .map((item) => (
@@ -153,7 +149,7 @@ function App() {
                   </div>
                 </div>
                 <div className='card-container'>
-                  {!pokemonSearched ? (
+                  {!pokemonSearched || pokemonQueryData == undefined ? (
                     <></>
                     ) : (
                     <>
@@ -165,7 +161,7 @@ function App() {
             ) : (
               <>
               </>
-            )};
+            )}
             {selectedButton === 'listMode' ? (
               <>
                 <div className='button'>

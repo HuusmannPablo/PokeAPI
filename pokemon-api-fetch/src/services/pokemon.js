@@ -25,23 +25,17 @@ export async function getSearchedPokemon(url) {
                 if (response.ok) {
                 return response.json()
                 } else if(response.status === 404) {
-                return Promise.reject('error 404')
+                return Promise.reject("404, pokemon hasn't been found")
                 } else {
                 return Promise.reject('some other error: ' + response.status)
                 }
             })
-
-            // .then(response => response.json())
             .then(data => {
                 resolve(data);
             })
-            // put here in the catch what I want to do with
-            // after the 404
-            .catch(error => console.log('error is', error));
-
-
-
-            // .catch(error => resolve('https://pokeapi.co/api/v2/pokemon/charmander'))
-            // .catch(error => console.log(error))
+            .catch((error, data) => {
+                console.log('error is', error);
+                reject(data = {})           
+            });
     })
 };
