@@ -64,11 +64,13 @@ function App() {
 
   const searchPokemonByName = async () => {   
       console.log('Search started')
-      let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-      await setPokemonQueryData(data);
+      if (pokemonQuery !== '') {
+        let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+        await setPokemonQueryData(data);
+        console.log(data)
+        setPokemonSearched(true);
+      }
       console.log('Search done')
-      console.log(data)
-    setPokemonSearched(true);
   };
 
   const [selectedButton, setSelectedButton] = useState('') 
