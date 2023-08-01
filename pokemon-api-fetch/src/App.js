@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material'
 import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
+import { toTitleCase } from './utils';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
 import './App.css';
@@ -145,13 +146,13 @@ function App() {
                           onClick={() => onSearch(item.name)}
                           key={item.name}
                         >
-                          {item.name}
+                          {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                         </div>
                     ))}
                   </div>
                 </div>
                 <div className='card-container'>
-                  {!pokemonSearched || pokemonQueryData == undefined ? (
+                  {!pokemonSearched || pokemonQueryData === undefined ? (
                     <></>
                     ) : (
                     <>
