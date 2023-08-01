@@ -85,7 +85,7 @@ function App() {
   const onSearch = (searchTerm) => {
     setSearchValue(searchTerm);
     setPokemonQuery(searchTerm);
-    console.log('Search', searchTerm);
+    console.log(searchTerm, 'selected');
   };
 
   return (
