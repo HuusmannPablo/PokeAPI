@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material'
 import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
+import { toTitleCase } from './utils';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
 import './App.css';
@@ -63,17 +64,14 @@ function App() {
   const [pokemonQueryData, setPokemonQueryData] = useState({});
 
   const searchPokemonByName = async () => {   
-    
-    // I need to add a functionality for when I get a 404 response. i.e. misspelled name
-    // a try catch could work
-    
-    setLoading(true);
-
-    let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
-    await setPokemonQueryData(data);
-      
-    setLoading(false);
-    setPokemonSearched(true);
+      console.log('Search started')
+      if (pokemonQuery !== '') {
+        let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
+        await setPokemonQueryData(data);
+        console.log(data)
+        setPokemonSearched(true);
+      }
+      console.log('Search done')
   };
 
   const [selectedButton, setSelectedButton] = useState('') 
@@ -83,11 +81,11 @@ function App() {
   const onChange = (event) => {
     setSearchValue(event.target.value);
     setPokemonQuery(event.target.value);
-  }
+  };
   const onSearch = (searchTerm) => {
     setSearchValue(searchTerm);
     setPokemonQuery(searchTerm);
-    console.log('Search', searchTerm);
+    console.log(searchTerm, 'selected');
   };
 
   return (
@@ -125,10 +123,6 @@ function App() {
               <>
                 <div className='searchbar'>
                   <p>Search by name</p>
-
-                  {/* <script async src="https://cse.google.com/cse.js?cx=14811ad9742524bab"></script>
-                  <div class="gcse-search"></div> */}
-
                   <button className='search-button' onClick={searchPokemonByName}>Search</button>
                   <input 
                     type='text' 
@@ -137,20 +131,13 @@ function App() {
                     value={searchValue}
                     onChange={onChange}
                   />
-                  {/* <input 
-                    type='text' 
-                    className='trial-search' 
-                    value={searchValue} 
-                    onChange={onChange}>
-                  </input>
-                  <button onClick={() => onSearch(searchValue)}> Search </button> */}
                   <div className='dropdown'>
                     {searchNameData
                       .filter(item => {
                         const searchTerm = searchValue.toLowerCase();
                         const name = item.name.toLowerCase();
 
-                        return searchTerm && name.includes(searchTerm) && name !== searchTerm;
+                        return searchTerm && name.includes(searchTerm) && name !== searchTerm
                       })
                       .slice(0, 10)
                       .map((item) => (
@@ -159,13 +146,13 @@ function App() {
                           onClick={() => onSearch(item.name)}
                           key={item.name}
                         >
-                          {item.name}
+                          {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
                         </div>
                     ))}
                   </div>
                 </div>
                 <div className='card-container'>
-                  {!pokemonSearched ? (
+                  {!pokemonSearched || pokemonQueryData === undefined ? (
                     <></>
                     ) : (
                     <>
@@ -177,7 +164,7 @@ function App() {
             ) : (
               <>
               </>
-            )};
+            )}
             {selectedButton === 'listMode' ? (
               <>
                 <div className='button'>
