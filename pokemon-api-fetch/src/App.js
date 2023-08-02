@@ -102,9 +102,20 @@ function App() {
             width: '200px',
           }}
           size='large'
-          onClick={() => setSelectedButton('searchMode')}
+          onClick={() => setSelectedButton('searchNameMode')}
         >
           Pokemon Search
+        </Button>
+        <Button
+          key={'button-1'}
+          variant='contained'
+          style={{
+            width: '200px',
+          }}
+          size='large'
+          onClick={() => setSelectedButton('searchTypeMode')}
+        >
+          Search by type
         </Button>
         <Button
           key={'button-2'}
@@ -122,7 +133,7 @@ function App() {
         <h1>Loading...</h1>
       ) : (
         <>
-          {selectedButton === 'searchMode' ? (
+          {selectedButton === 'searchNameMode' ? (
             <>
               <div className='searchbar'>
                 <p>Search by name or number</p>
@@ -167,6 +178,13 @@ function App() {
           ) : (
             <>
             </>
+          )}
+          {selectedButton === 'searchTypeMode' ? (
+            <>
+            </>
+            ) : (
+              <>
+              </>
           )}
           {selectedButton === 'listMode' ? (
             <>
