@@ -14,7 +14,6 @@ function Card({ pokemon }) {
                 src={`${pokemon.sprites.other.dream_world.front_default}`} 
                 alt='Pokemon' 
             ></img>
-            {/* <img className='image' src={`${pokemon.sprites.front_default}`} alt='Pokemon' ></img> */}
         </div>
 
         {/* Name */}

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material'
-import { getPokemon, getAllPokemon, getSearchedPokemon } from './services/pokemon';
-import { toTitleCase } from './utils';
+import { 
+  getPokemon, 
+  getAllPokemon, 
+  getSearchedPokemon, 
+} from './services/pokemon';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar'
 import './App.css';
@@ -10,13 +13,23 @@ var searchNameData = require("./pokemonData.json");
 
 function App() {
 
-  // Functionality for showing all the Pokemon, 20 per page
+  // For rendering depending on selection
+  const [selectedButton, setSelectedButton] = useState('')
 
+  // Functionality for showing all the Pokemon, 20 per page
   const [pokemonData, setPokemonData] = useState([]);
-  const [nextUrl, setNextUrl] = useState('');         // Next Page
-  const [prevUrl, setPrevUrl] = useState('');         // Previous Page
-  const [loading, setLoading] = useState(true);       // For the loading when fetching
+  const [nextUrl, setNextUrl] = useState('');
+  const [prevUrl, setPrevUrl] = useState('');
+  const [loading, setLoading] = useState(true);
   const initialUrl = 'https://pokeapi.co/api/v2/pokemon';
+
+  // Functionality for searching one Pokemon
+  const [pokemonQuery, setPokemonQuery] = useState('');
+  const [pokemonSearched, setPokemonSearched] = useState(false);
+  const [pokemonQueryData, setPokemonQueryData] = useState({});
+
+  // Functionality for autocomplete
+  const [searchValue, setSearchValue] = useState('')
 
   useEffect(() => {
     async function fetchData() {
@@ -58,26 +71,16 @@ function App() {
     setPokemonData(allPokemonData);
   };
 
-  // Functionality for searching one Pokemon
-  const [pokemonQuery, setPokemonQuery] = useState('');
-  const [pokemonSearched, setPokemonSearched] = useState(false);
-  const [pokemonQueryData, setPokemonQueryData] = useState({});
-
   const searchPokemonByName = async () => {   
       console.log('Search started')
       if (pokemonQuery !== '') {
         let data = await getSearchedPokemon(`https://pokeapi.co/api/v2/pokemon/${pokemonQuery.toLowerCase()}`)
         await setPokemonQueryData(data);
-        console.log(data)
         setPokemonSearched(true);
       }
       console.log('Search done')
   };
 
-  const [selectedButton, setSelectedButton] = useState('') 
-
-  // Autocomplete function
-  const [searchValue, setSearchValue] = useState('')
   const onChange = (event) => {
     setSearchValue(event.target.value);
     setPokemonQuery(event.target.value);
@@ -89,105 +92,105 @@ function App() {
   };
 
   return (
-      <div>
-        <Navbar />
-        <div className='button-container'>
-          <Button
-            key={'button-1'}
-            variant='contained'
-            style={{
-              width: '200px',
-            }}
-            size='large'
-            onClick={() => setSelectedButton('searchMode')}
-          >
-              Pokemon Search
-          </Button>
-          <Button
-            key={'button-2'}
-            variant='contained'
-            style={{
-              width: '200px',
-            }}
-            size='large'
-            onClick={() => setSelectedButton('listMode')}
-          >
-              Catch 'em all
-          </Button>
-        </div>
-        {loading ? (
-          <h1>Loading...</h1>
-        ) : (
-          <>
-            {selectedButton === 'searchMode' ? (
-              <>
-                <div className='searchbar'>
-                  <p>Search by name</p>
-                  <button className='search-button' onClick={searchPokemonByName}>Search</button>
-                  <input 
-                    type='text' 
-                    placeholder='Type here...' 
-                    className='search'
-                    value={searchValue}
-                    onChange={onChange}
-                  />
-                  <div className='dropdown'>
-                    {searchNameData
-                      .filter(item => {
-                        const searchTerm = searchValue.toLowerCase();
-                        const name = item.name.toLowerCase();
-
-                        return searchTerm && name.includes(searchTerm) && name !== searchTerm
-                      })
-                      .slice(0, 10)
-                      .map((item) => (
-                        <div 
-                          className='dropdown-row' 
-                          onClick={() => onSearch(item.name)}
-                          key={item.name}
-                        >
-                          {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
-                        </div>
-                    ))}
-                  </div>
-                </div>
-                <div className='card-container'>
-                  {!pokemonSearched || pokemonQueryData === undefined ? (
-                    <></>
-                    ) : (
-                    <>
-                      <Card pokemon={pokemonQueryData} />
-                    </>
-                  )}
-                </div>
-              </>
-            ) : (
-              <>
-              </>
-            )}
-            {selectedButton === 'listMode' ? (
-              <>
-                <div className='button'>
-                  <button onClick={previousPage}>Previous Page</button>
-                  <button onClick={nextPage}>Next Page</button>
-                </div>
-                <div className='grid-container'>
-                  {pokemonData.map((pokemon, i) => {
-                    return <Card key={i} pokemon={pokemon} />
-                  })}
-                </div>
-                <div className='button'>
-                  <button onClick={previousPage}>Previous Page</button>
-                  <button onClick={nextPage}>Next Page</button>
-                </div>
-              </>
-            ) : (
-              <>
-              </>
-            )}
-          </>
-        )}
+    <div>
+      <Navbar />
+      <div className='button-container'>
+        <Button
+          key={'button-1'}
+          variant='contained'
+          style={{
+            width: '200px',
+          }}
+          size='large'
+          onClick={() => setSelectedButton('searchMode')}
+        >
+          Pokemon Search
+        </Button>
+        <Button
+          key={'button-2'}
+          variant='contained'
+          style={{
+            width: '200px',
+          }}
+          size='large'
+          onClick={() => setSelectedButton('listMode')}
+        >
+          Catch 'em all
+        </Button>
       </div>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          {selectedButton === 'searchMode' ? (
+            <>
+              <div className='searchbar'>
+                <p>Search by name or number</p>
+                <button className='search-button' onClick={searchPokemonByName}>Search</button>
+                <input
+                  type='text'
+                  placeholder='Type here...'
+                  className='search'
+                  value={searchValue}
+                  onChange={onChange}
+                />
+                <div className='dropdown'>
+                  {searchNameData
+                    .filter(item => {
+                      const searchTerm = searchValue.toLowerCase();
+                      const name = item.name.toLowerCase();
+
+                      return searchTerm && name.includes(searchTerm) && name !== searchTerm
+                    })
+                    .slice(0, 10)
+                    .map((item) => (
+                      <div
+                        className='dropdown-row'
+                        onClick={() => onSearch(item.name)}
+                        key={item.name}
+                      >
+                        {item.name.charAt(0).toUpperCase() + item.name.slice(1)}
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className='card-container'>
+                {!pokemonSearched || pokemonQueryData === undefined ? (
+                  <></>
+                ) : (
+                  <>
+                    <Card pokemon={pokemonQueryData} />
+                  </>
+                )}
+              </div>
+            </>
+          ) : (
+            <>
+            </>
+          )}
+          {selectedButton === 'listMode' ? (
+            <>
+              <div className='button'>
+                <button onClick={previousPage}>Previous Page</button>
+                <button onClick={nextPage}>Next Page</button>
+              </div>
+              <div className='grid-container'>
+                {pokemonData.map((pokemon, i) => {
+                  return <Card key={i} pokemon={pokemon} />
+                })}
+              </div>
+              <div className='button'>
+                <button onClick={previousPage}>Previous Page</button>
+                <button onClick={nextPage}>Next Page</button>
+              </div>
+            </>
+          ) : (
+            <>
+            </>
+          )}
+        </>
+      )}
+    </div>
   );
 }
 
