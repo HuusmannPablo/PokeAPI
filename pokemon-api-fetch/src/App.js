@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from '@mui/material'
+import { 
+  Button, 
+  FormControl, 
+  InputLabel, 
+  Select, 
+  MenuItem 
+} from '@mui/material';
 import { 
   getPokemon, 
   getAllPokemon, 
   getSearchedPokemon, 
 } from './services/pokemon';
+import typesInfo from './texts/pokemonTypes';
 import Card from './components/Card/Card';
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/Navbar/Navbar';
 import './App.css';
 
 var searchNameData = require("./pokemonData.json");
@@ -29,7 +36,10 @@ function App() {
   const [pokemonQueryData, setPokemonQueryData] = useState({});
 
   // Functionality for autocomplete
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState('');
+
+  // FUnctionality for selecting type
+  const [type, setType] = useState('');
 
   useEffect(() => {
     async function fetchData() {
@@ -96,7 +106,7 @@ function App() {
       <Navbar />
       <div className='button-container'>
         <Button
-          key={'button-1'}
+          key={'button-name'}
           variant='contained'
           style={{
             width: '200px',
@@ -104,10 +114,10 @@ function App() {
           size='large'
           onClick={() => setSelectedButton('searchNameMode')}
         >
-          Pokemon Search
+          Search by name
         </Button>
         <Button
-          key={'button-1'}
+          key={'button-type'}
           variant='contained'
           style={{
             width: '200px',
@@ -118,7 +128,7 @@ function App() {
           Search by type
         </Button>
         <Button
-          key={'button-2'}
+          key={'button-list'}
           variant='contained'
           style={{
             width: '200px',
@@ -181,6 +191,38 @@ function App() {
           )}
           {selectedButton === 'searchTypeMode' ? (
             <>
+              <div className='type-dropdown-menu'>
+                <FormControl 
+                  variant='outlined' 
+                  sx={{ 
+                    m: 1, 
+                    minWidth: 200, 
+                    maxWidth: 300, 
+                    textAlign: 'center', 
+                  }}
+                  size='small'
+                >
+                  <InputLabel>Type</InputLabel>
+                  <Select
+                    value={type}
+                    label="Type"
+                    onChange={setType}
+                    autoWidth
+                    sx={{ maxHeight: 250, overflow: 'auto' }}
+                  >
+                    {typesInfo.map((type, id) => (
+                      <MenuItem 
+                        key={id} 
+                        value={type.name}
+                      >
+                        {/* <img src=`{type.icon}`></img> */}
+                        {type.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+              </div>
             </>
             ) : (
               <>
