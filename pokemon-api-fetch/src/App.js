@@ -15,6 +15,7 @@ import typesInfo from './texts/pokemonTypes';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
+import { POKEBALL_ICON } from './texts/images';
 
 var searchNameData = require("./pokemonData.json");
 
@@ -99,6 +100,16 @@ function App() {
     setSearchValue(searchTerm);
     setPokemonQuery(searchTerm);
     console.log(searchTerm, 'selected');
+  };
+
+  function DropdownItem(key, icon, type){
+    console.log(type);
+    return(
+      <li className='custom-dropdown-item'>
+        <img src={icon} alt={`${type} icon`}></img>
+        <p>{type}</p>
+      </li>
+    );
   };
 
   return (
@@ -191,6 +202,25 @@ function App() {
           )}
           {selectedButton === 'searchTypeMode' ? (
             <>
+              <div className='type-dropdown-menu-container'>
+                <div className='dropdown-trigger'>
+                  <img src={POKEBALL_ICON} alt='pokeball icon'></img>
+                </div>
+                <div className='custom-dropdown-menu'>
+                    {typesInfo.map((type, id) => (
+                      <ul key={id}>
+                        <DropdownItem 
+                          key={type.id} 
+                          icon={type.icon} 
+                          type={type.name} 
+                        />
+                      </ul>
+                    ))}
+                </div>
+              </div>
+
+
+
               <div className='type-dropdown-menu'>
                 <FormControl 
                   variant='outlined' 
@@ -204,7 +234,7 @@ function App() {
                 >
                   <InputLabel>Type</InputLabel>
                   <Select
-                    value={type}
+                    value={type} // could be setType?
                     label="Type"
                     onChange={setType}
                     autoWidth

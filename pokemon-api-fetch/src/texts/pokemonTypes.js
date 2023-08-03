@@ -3,7 +3,7 @@ const typesInfo = [
         id: 1,
         name: 'Normal',
         color: '#a4acaf',
-        icon: '../public/normal-icon.png',
+        icon: './images/normal-icon.png',
     },
     {
         id: 2,
