@@ -15,7 +15,7 @@ import typesInfo from './texts/pokemonTypes';
 import Card from './components/Card/Card';
 import Navbar from './components/Navbar/Navbar';
 import './App.css';
-import { POKEBALL_ICON } from './texts/images';
+import { POKEBALL_ICON, POKEBALL_ICON2 } from './texts/images';
 
 var searchNameData = require("./pokemonData.json");
 
@@ -204,23 +204,32 @@ function App() {
             <>
               <div className='type-dropdown-menu-container'>
                 <div className='dropdown-trigger'>
-                  <img src={POKEBALL_ICON} alt='pokeball icon'></img>
+                  <img 
+                    src={POKEBALL_ICON2} 
+                    alt='pokeball icon' 
+                    style={{ maxWidth: '50px', maxHeight: '50px', cursor: 'pointer' }}
+                  ></img>
                 </div>
                 <div className='custom-dropdown-menu'>
-                    {typesInfo.map((type, id) => (
-                      <ul key={id}>
-                        <DropdownItem 
-                          key={type.id} 
-                          icon={type.icon} 
-                          type={type.name} 
-                        />
-                      </ul>
+                    {typesInfo.map((item, id) => (
+                        <div key={id} className='custom-dropdown-item'>
+                          <img 
+                            src={item.icon} 
+                            alt={`${item.icon} icon`}
+                            style={{ maxHeight: '50px', maxWidth: '50px', }}
+                          ></img>
+                          <h4>{item.name}</h4>
+                        {/* <DropdownItem 
+                          icon={item.icon} 
+                          type={item.name} 
+                        /> */}
+                        </div>
                     ))}
                 </div>
               </div>
 
 
-
+            {/* MATERIALS UI DROPDOWN */}
               <div className='type-dropdown-menu'>
                 <FormControl 
                   variant='outlined' 
